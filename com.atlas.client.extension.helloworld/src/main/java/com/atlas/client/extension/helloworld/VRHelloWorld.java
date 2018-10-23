@@ -77,7 +77,72 @@ public static class VSHelloWorld{
 		@Label(value = "Hello All!")
 		private String title1;
 
+       // Creates a Textbox which is not null and has the label Name
+         @TextBox @NotNull
+         @Label(" Name") private String name;
+
+        /* Creates a CheckBox which changes on an event
+           with the label Choose an option and has options defined
+           in YNType.class
+        */
+         @CheckBoxGroup
+	  @Model.Param.Values(value = YNType1.class)
+	  @Label(value = "Skill Set") private String checkbox;
+
+      /* Creates a RadioButton which changes on an event
+         with the label Choose an option and has options defined
+         in YNType.class
+      */ @Radio
+	  @Model.Param.Values(value = YNType.class)
+         @Label(value = "Years of Experience") private String radio;
+
+        /* Creates a Signature box which accepts signature and
+           has the label  Signature
+        */
+         @Signature
+         @Label(" Signature") private String signature;
+
+         // Creates a Button with style PRIMARY and has the label Submit
+         @Button(style=Button.Style.PRIMARY)
+         @Label(" Submit")
+         private String submit;
 }
+        /* YNTypeclass creates a List which accept values of the
+           type ParamValue and has values 0-2 yrs,2-5 yrs, Above 5 yrs
+        */
+    	  public static class YNType implements Source
+	  {
+	     @Override
+	      public List<ParamValue> getValues(String paramPath)
+	       {
+	         List<ParamValue> values = new ArrayList<>();
+	          values.add(new ParamValue("0", "0-2 yrs"));
+	          values.add(new ParamValue("2", "2-5 yrs"));
+	          values.add(new ParamValue("5", "Above 5 yrs"));
+	          return values;
+	        }
+	   }
+
+
+
+        /* YNTypeclass1 creates a List which accept values of the
+           type ParamValue and has values Core Java,Spring MVC, Spring Cloud,
+           DevOps
+        */
+
+	   public static class YNType1 implements Source
+	   {
+	      @Override
+	        public List<ParamValue> getValues(String paramPath)
+	         {
+	          List<ParamValue> values = new ArrayList<>();
+	          values.add(new ParamValue("CJ", "Core Java"));
+	          values.add(new ParamValue("SM", "Spring MVC"));
+	          values.add(new ParamValue("SC", "Spring Cloud"));
+	          values.add(new ParamValue("De", "DevOps"));
+	          return values;
+	         }
+	      }
 }
 
 
